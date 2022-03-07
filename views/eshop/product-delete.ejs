@@ -1,0 +1,35 @@
+<%- include("header", {title: title, product: product}); %>
+
+<div class="form-title">
+    <h1>Delete product</h1>
+
+    <p>This is the details for product <%= product %></p>
+
+</div>
+
+<% res = res[0] %>
+<form class="label-left" method="post" action="/eshop/delete">
+    <fieldset>
+        <label for="id">ID</label>
+        <input id="id" type="text" name="id" readonly value="<%= res.produkt_id %>">
+
+        <label for="pris">Pris</label>
+        <input id="pris" type="number" readonly name="pris" value="<%= res.pris %>">
+
+        <label for="namn">Namn</label>
+        <input id="namn" type="text" name="namn" readonly value="<%= res.namn %>">
+
+        <label for="beskrivning">Beskrivning</label>
+        <input id="beskrivning" type="text" name="beskrivning" readonly value="<%= res.beskrivning %>">
+
+        <label for="kategori">Kategori:</label>
+        <p><%= res.kategori %></p>
+
+        <label for="antal">Antal</label>
+        <input id="antal" type="number" name="antal" readonly value="<%= res.antal %>">
+
+        <input type="submit" name="doit" value="Delete product">
+    </fieldset>
+</form>
+
+<%- include("footer"); %>

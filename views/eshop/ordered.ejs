@@ -1,0 +1,10 @@
+<%- include("header", {title: title}, {orderId:orderId}, {namn:namn}) %>
+
+<h4>Tack för din beställning <%= namn %>!</h4>
+<img src="/img/coffee-gif.gif" alt="coffee">
+<br>
+<div class="link-btn">
+    <a href="/eshop/order/<%= orderId %>"> Order översikt</a>
+</div>
+
+<%- include("footer"); %>

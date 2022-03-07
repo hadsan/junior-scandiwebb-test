@@ -1,0 +1,33 @@
+<%- include("header", {title: title}, {id: id}, {orderId: orderId}); %>
+
+<h1>Skapa Ny Order</h1>
+
+<p>
+    Skapa en ny order.
+</p>
+
+<table>
+    <tr>
+        <th>Produkt ID</th>
+        <th>Namn</th>
+        <th>Pris</th>
+        <th>Lager Status</th>
+        <th>Lägg till i varukorgen</th>
+    </tr>
+    <% for (const row of res) { %>
+    <form class="label-left" method="post">
+        <tr>
+            <td><input readonly id="produkt_id" type="text" name="produkt_id" value="<%= row.produkt_id %>"></td>
+            <td><input readonly id="namn" type="text" name="namn" value="<%= row.namn %>"></td>
+            <td><input readonly id="pris" type="text" name="pris" value="<%= row.pris %>"></td>
+            <td><input readonly id="antal" type="text" name="antal" value="<%= row.antal %>"></td>
+            <td class="td-total">
+                <input required id="total" type="number" name="total" style="width: 2em" placeholder="0" min="1">
+                <input type="submit" name="doit" value="Lägg till">
+            </td>
+        </tr>
+    </form>
+    <% }; %>
+</table>
+
+<%- include("footer"); %>

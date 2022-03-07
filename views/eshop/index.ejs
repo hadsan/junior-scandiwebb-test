@@ -1,0 +1,22 @@
+<%- include("header", {title: title});%>
+
+<h1>Välkommen till BuckStar</h1>
+
+<p>
+    Företaget Buckstar säljer kaffe, kaffemuggar och liknande produkter online.
+    Det finns även ett utbud av te produkter dock finns det ett begränsat urval.
+</p>
+<h2>Produkter</h2>
+<div class="products">
+    <% for (const row of res) {  console.log(row.img) %>
+    <div class="box">
+        <a href="/eshop/product/<%= row.produkt_id %>"><img src="<%= row.img %>" alt="<%= row.produkt_id %>"></a>
+        <div class="desc">
+            <a href="/eshop/product/<%= row.produkt_id %>"><%= row.produkt_id %></a>
+            <p><%= row.namn %></p>
+            <h3><%= row.pris %> kr</h3>
+        </div>
+    </div>
+    <% }; %>
+</div>
+<%- include("footer"); %>

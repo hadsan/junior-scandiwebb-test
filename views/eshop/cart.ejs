@@ -1,0 +1,35 @@
+<%- include("header", {title: title}, {orderId:orderId}, {id:id}, {namn:namn});%>
+
+<h1>Varukorg</h1>
+<h2>Order: <%= orderId %> | <%= namn %></h2>
+
+<table>
+    <tr>
+        <th>OrderID</th>
+        <th>ProduktID</th>
+        <th>Namn</th>
+        <th>Pris</th>
+        <th>Antal Produkter</th>
+    </tr>
+
+
+    <%for (const row of res) { %>
+    <tr>
+        <td><%= row.order_id %></td>
+        <td><%= row.produkt_id %></td>
+        <td><%= row.namn %></td>
+        <td><%= row.pris %></td>
+        <td><%= row.antal %></td>
+    </tr>
+    <%};%>
+</table>
+
+<div class="link-btn">
+    <a href=<%-"/eshop/add-order/"+id+"/"+orderId;%>>Lägg till orderrader</a>
+</div>
+
+<div class="link-btn">
+    <a href=<%-"/eshop/order-complete/"+orderId;%>>Beställ</a>
+</div>
+
+<%- include("footer"); %>

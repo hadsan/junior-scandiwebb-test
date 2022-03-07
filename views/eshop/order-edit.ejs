@@ -1,0 +1,71 @@
+<%- include("header", {title: title, orderId: orderId, namn: namn, customerId: customerId, orderStatus: orderStatus} ); %>
+
+<h1>Redigera order</h1>
+<h2>Order: <%= orderId %> | <%= namn %> </h2>
+<%
+if (orderStatus == 'raderad') {%>
+<p>Beställningen är raderad!</p>
+<div class="link-btn">
+    <a href=<%-"/eshop/order/"+orderId;%>>Order</a>
+</div>
+
+<%} else if (orderStatus == 'skickad') {%>
+<p>Beställningen är redan skickad!</p>
+<div class="link-btn">
+    <a href=<%-"/eshop/order/"+orderId;%>>Order</a>
+</div>
+
+<%} else if (res == 0) { %>
+<p>Beställningen är tom!</p>
+<div class="link-btn">
+    <a href=<%-"/eshop/add-order/"+customerId+"/"+orderId;%>>Lägg till orderrader</a>
+</div>
+<%} else {%>
+<table>
+    <tr>
+        <th>OrderID</th>
+        <th>ProduktID</th>
+        <th>Namn</th>
+        <th>Pris</th>
+        <th>Antal Produkter</th>
+
+    </tr>
+
+    <% for (const row of res) { %>
+    <form class="label-left" method="post">
+        <tr>
+            <td><input readonly id="order_id" type="text" name="order_id" value="<%= row.order_id %>"></td>
+            <td><input readonly id="produkt_id" type="text" name="produkt_id" value="<%= row.produkt_id %>"></td>
+            <td><input readonly id="namn" type="text" name="namn" value="<%= row.namn %>"></td>
+            <td><input readonly id="pris" type="text" name="pris" value="<%= row.pris %>"></td>
+            <% if(res.length == 1)
+                { %>
+            <td class="td-total">
+                <input required id="antal" type="number" name="antal" style="width: 2em" placeholder="<%= row.antal %>" min="1">
+                <input class="antal-table" type="submit" name="doit" value="Redigera">
+            </td>
+            <%}
+                else { %>
+            <td class="td-total">
+                <input required id="antal" type="number" name="antal" style="width: 2em" placeholder="<%= row.antal %>" min="0">
+                <input class="antal-table" type="submit" name="doit" value="Redigera">
+            </td>
+
+            <%};%>
+
+        </tr>
+    </form>
+    <% }; %>
+</table>
+
+<div class="link-btn">
+    <a href=<%-"/eshop/add-order/"+customerId+"/"+orderId;%>>Lägg till orderrader</a>
+</div>
+<% if (orderStatus == 'skapad' || orderStatus == 'uppdaterad') { %>
+<div class="link-btn">
+    <a href=<%-"/eshop/order-complete/"+orderId;%>>Beställ</a>
+</div>
+<%};%>
+
+<% }; %>
+<%- include("footer"); %>

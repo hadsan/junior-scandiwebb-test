@@ -1,0 +1,43 @@
+<%- include("header", {title: title}, {inv: inv}); %>
+
+<div class="form-title">
+    <h1>Skapa produkt</h1>
+
+    <p>
+        Skapa en ny produkt.
+    </p>
+</div>
+
+<form class="label-left" method="post">
+    <fieldset>
+        <label for="id">ID</label>
+        <input id="id" type="text" name="id" required>
+
+        <label for="pris">Pris</label>
+        <input id="pris" type="number" name="pris" required>
+
+        <label for="namn">Namn</label>
+        <input id="namn" type="text" name="namn" required>
+
+
+        <label for="beskrivning">Beskrivning</label>
+        <textarea id="beskrivning" name="beskrivning" rows="8" cols="80"></textarea>
+
+
+        <p>Kategori</p>
+        <% for (const row of res) { %>
+        <input type="radio" id="<%= row.produkt_kategori %>" name="kategori" value="<%= row.produkt_kategori %>" required>
+        <label class="radio" for="<%= row.produkt_kategori %>"> <%= row.produkt_kategori %></label><br>
+        <% }; %>
+        <p>Hylla</p>
+        <% for (const row of inv) { %>
+        <input type="radio" id="<%= row.hylla %>" name="hylla" value="<%= row.hylla %>" required>
+        <label class="radio" for="<%= row.hylla %>"> <%= row.hylla %></label><br>
+        <% }; %>
+        <label for="antal">Antal</label>
+        <input id="antal" type="number" name="antal" required>
+        <input type="submit" name="doit" value="Skapa">
+    </fieldset>
+</form>
+
+<%- include("footer"); %>

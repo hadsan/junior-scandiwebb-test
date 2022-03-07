@@ -1,0 +1,47 @@
+<%- include("header", {title: title}); %>
+
+<h1>Produkter</h1>
+
+<% if (res == 0) {%>
+
+<p>Det finns inga produkter tillgängliga!</p>
+
+<%} else {%>
+
+<p>En tabell över de produkter BuckStar erbjuder.</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Pris</th>
+        <th>Namn</th>
+        <th>Antal</th>
+        <th>Kategori</th>
+    </tr>
+    <% for (const row of res) { %>
+    <tr>
+        <td><a href="/eshop/product/<%= row.produkt_id %>"><%= row.produkt_id %></a></td>
+        <td><%= row.pris %></td>
+        <td><%= row.namn %></td>
+        <td><%= row.antal %></td>
+        <td><%= row.kategori %></td>
+        <td>
+            <a href="/eshop/edit/<%= row.produkt_id %>">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
+        </td>
+        <td>
+            <a href="/eshop/delete/<%= row.produkt_id %>">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+    <% }; %>
+</table>
+<%};%>
+
+<div class="link-btn">
+    <a href="/eshop/index">Index</a>
+</div>
+
+<%- include("footer"); %>

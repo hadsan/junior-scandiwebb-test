@@ -1,0 +1,30 @@
+<%- include("header", {title: title}, {category: category}); %>
+
+<h1> <%= category %></h1>
+<%
+if (res == 0) {%>
+<p>Det finns inga produkter i kategori '<%= category %>'!</p>
+<%}
+else {%>
+<p>Översikt av produkterna i kategori '<%= category %>'</p>
+
+<table>
+    <tr>
+        <th>Kategori</th>
+        <th>Produkt(er)</th>
+
+    </tr>
+    <% for (const row of res) { %>
+    <tr>
+        <td><%= row.produkt_kategori %></td>
+        <td><%= row.produkt_id %></td>
+    </tr>
+    <% }; %>
+</table>
+<%};%>
+
+<div class="link-btn">
+    <a href="/eshop/category/">Alla Kategorier</a>
+</div>
+
+<%- include("footer"); %>

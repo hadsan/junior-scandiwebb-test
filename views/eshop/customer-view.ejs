@@ -1,0 +1,40 @@
+<%- include("header", {title: title}, {id: id}, {namn: namn}); %>
+
+<h1><%= namn %></h1>
+
+<p> </p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Namn</th>
+        <th>Adress</th>
+        <th>Postnummer</th>
+        <th>Ort</th>
+        <th>Land</th>
+        <th>Telefon</th>
+        <th>Beställ</th>
+    </tr>
+    <% for (const row of res) { %>
+    <tr>
+        <td><%= row.id %></td>
+        <td><%= row.Namn %></td>
+        <td><%= row.adress %></td>
+        <td><%= row.postnummer %></td>
+        <td><%= row.ort %></td>
+        <td><%= row.land %></td>
+        <td><%= row.telefon %></td>
+        <td>
+            <a href="/eshop/orders/<%= row.id %>">
+                <button type="button" name="button">Beställningar</button>
+            </a>
+        </td>
+    </tr>
+    <% }; %>
+</table>
+
+<div class="link-btn">
+    <a href="/eshop/index">Index</a>
+</div>
+
+<%- include("footer"); %>

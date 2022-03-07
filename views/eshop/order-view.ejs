@@ -1,0 +1,59 @@
+<%- include("header", {title: title}, {customerId:customerId}, {orderId: orderId}, {orderStatus:orderStatus}, {namn:namn}); %>
+
+<h1>Beställning <%= orderId %> | <%= namn %></h1>
+<%
+if (orderStatus == 'raderad') {%>
+<p>Beställningen är raderad!</p>
+<div class="link-btn">
+    <a href=<%-"/eshop/orders/"+customerId;%>>Order</a>
+</div>
+
+<%} else if (res == 0) {%>
+<p>Beställningen är tom!</p>
+<div class="link-btn">
+    <a href="/eshop/edit-order/<%= orderId %>">
+        Redigera order
+    </a>
+</div>
+
+<div class="link-btn">
+    <a href="/eshop/delete-order/<%= orderId %>">
+        Radera order
+    </a>
+</div>
+<%} else {%>
+<table>
+    <tr>
+        <th>OrderID</th>
+        <th>ProduktID</th>
+        <th>Namn</th>
+        <th>Pris</th>
+        <th>Antal</th>
+    </tr>
+    <% for (const row of res) { %>
+    <tr>
+        <td><%= row.order_id %></td>
+        <td><%= row.produkt_id %></td>
+        <td><%= row.namn %></td>
+        <td><%= row.pris %></td>
+        <td><%= row.antal %></td>
+    </tr>
+    <% }; %>
+</table>
+<div class="link-btn">
+    <a href="/eshop/edit-order/<%= orderId %>">
+        Redigera order
+    </a>
+</div>
+
+<div class="link-btn">
+    <a href="/eshop/delete-order/<%= orderId %>">
+        Radera order
+    </a>
+</div>
+<%};%>
+<div class="link-btn">
+    <a href="/eshop/customers/">Kunder</a>
+</div>
+
+<%- include("footer"); %>

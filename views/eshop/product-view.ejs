@@ -1,0 +1,32 @@
+<%- include("header", {title: title, product: product}); %>
+
+<h1><%= product %></h1>
+
+<p>Information om produkten '<%= product %>'</p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Pris</th>
+        <th>Namn</th>
+        <th>Beskrivning</th>
+        <th>Antal</th>
+        <th>Kategori</th>
+    </tr>
+    <% for (const row of res) { %>
+    <tr>
+        <td><%= row.produkt_id %></td>
+        <td><%= row.pris %></td>
+        <td><%= row.namn %></td>
+        <td><%= row.beskrivning %></td>
+        <td><%= row.antal %></td>
+        <td><%= row.kategori %></td>
+    </tr>
+    <% }; %>
+</table>
+
+<div class="link-btn">
+    <a href="/eshop/product/">Alla Produkter</a>
+</div>
+
+<%- include("footer"); %>

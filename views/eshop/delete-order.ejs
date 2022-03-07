@@ -1,0 +1,48 @@
+<%- include("header", {title: title, orderId: orderId, namn: namn, orderStatus: orderStatus}); %>
+
+<div class="form-title">
+    <h1>Radera order</h1>
+    <h2>Order: <%= orderId %> | <%= namn %> </h2>
+</div>
+
+<form class="label-left" method="post">
+    <%
+if (orderStatus == 'raderad') {%>
+    <p style="text-align: center">Beställningen är redan raderad!</p>
+    <div class="link-btn">
+        <a href=<%-"/eshop/order/"+orderId;%>>Order</a>
+    </div>
+
+    <%} else {
+    if (res == 0) {%>
+    <p style="text-align: center">Beställningen är tom!</p>
+    <%} else {%>
+    <table>
+        <tr>
+            <th>OrderID</th>
+            <th>ProduktID</th>
+            <th>Namn</th>
+            <th>Pris</th>
+            <th>Antal Produkter</th>
+        </tr>
+
+        <% for (const row of res) { %>
+        <tr>
+            <td><input readonly id="order_id" type="text" name="order_id" value="<%= row.order_id %>"></td>
+            <td><input readonly id="produkt_id" type="text" name="produkt_id" value="<%= row.produkt_id %>"></td>
+            <td><input readonly id="namn" type="text" name="namn" value="<%= row.namn %>"></td>
+            <td><input readonly id="pris" type="text" name="pris" value="<%= row.pris %>"></td>
+            <td class="td-total">
+                <input readonly id="antal" type="number" name="antal" style="width: 2em" placeholder="<%= row.antal %>">
+            </td>
+        </tr>
+        <% }; %>
+    </table>
+    <%};%>
+
+
+    <input type="submit" name="doit" value="Radera">
+    <%};%>
+</form>
+
+<%- include("footer"); %>

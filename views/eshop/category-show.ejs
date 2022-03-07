@@ -1,0 +1,22 @@
+<%- include("header", {title: title}); %>
+
+<h1>Kategorier</h1>
+
+<p>En tabell över de produktkategorier som finns tillgängliga.</p>
+
+<table>
+    <tr>
+        <th>Kategori</th>
+    </tr>
+    <% for (const row of res) { %>
+    <tr>
+        <td><a href="/eshop/category/<%= row.produkt_kategori %>"><%= row.produkt_kategori %></a></td>
+    </tr>
+    <% }; %>
+</table>
+
+<div class="link-btn">
+    <a href="index">Index</a>
+</div>
+
+<%- include("footer"); %>
